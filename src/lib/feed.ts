@@ -18,6 +18,8 @@ export type FeedEventType =
   | "SessionStart"
   | "Stop"
   | "Notification"
+  // Agent lifecycle callbacks
+  | "AgentCallback"
   // Message lifecycle (hooks v2)
   | "MessageSend"
   | "MessageDeliver"
@@ -150,6 +152,8 @@ export function describeActivity(event: FeedEvent): string {
     }
     case "Notification":
       return `🔔 ${event.message || "Notification"}`;
+    case "AgentCallback":
+      return event.message || "Agent callback";
     default:
       return event.message || event.event;
   }
